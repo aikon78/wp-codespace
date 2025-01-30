@@ -1,6 +1,5 @@
-FROM mcr.microsoft.com/devcontainers/base:bullseye
 #FROM php:8.2.5-apache-bullseye
-#FROM mcr.microsoft.com/devcontainers/php:8-buster
+FROM mcr.microsoft.com/devcontainers/php:8-buster
 
 #
 # curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -22,7 +21,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 
 # [Choice] Node.js version: none, lts/*, 16, 14, 12, 10
-ARG NODE_VERSION="19"
+ARG NODE_VERSION="22"
 #RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"; fi
 RUN su vscode -c "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash" 
 #RUN su vscode -c "chmod +x /home/vscode/.nvm/nvm.sh"
@@ -38,4 +37,4 @@ RUN su vscode -c "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/
 #RUN su vscode -c "yes | ~/.nvm/npx playwright install-deps"  
 #RUN su vscode -c "npx playwright install" 
 
-#EXPOSE 80
+EXPOSE 80
