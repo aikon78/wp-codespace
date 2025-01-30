@@ -17,7 +17,7 @@ sudo a2ensite 000-default
 
 sudo apache2ctl start
 
-LOCALE="en_US"
+LOCALE="it_IT"
 
 # NVM
 chmod +x /home/vscode/.nvm/nvm.sh
