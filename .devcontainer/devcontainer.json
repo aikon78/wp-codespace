@@ -32,7 +32,8 @@
 			"label": "Database (internal)"
 		},
 		"9090": {
-			"label": "WordPress"
+			"label": "WordPress",
+			"onAutoForward": "openPreview"
 		},
 		"81": {
 			"label": "phpMyAdmin"
