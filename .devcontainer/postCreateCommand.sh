@@ -1,6 +1,6 @@
 #! /bin/bash
 REPO_FOLDER="/workspaces/$RepositoryName"
-SERVERNAME="$CODESPACE_NAME-9090.$GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN"
+SERVERNAME="$CODESPACE_NAME-80.$GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN"
 
 # Apache
 sudo a2dissite 000-default
@@ -32,6 +32,8 @@ wp config create --dbname=wordpress --dbuser=wordpress --dbpass=wordpress --dbho
 LINE_NUMBER=`grep -n -o 'stop editing!' wp-config.php | cut -d ':' -f 1`
 sed -i "${LINE_NUMBER}r ../.devcontainer/wp-config-addendum.txt" wp-config.php && sed -i -e "s/CODESPACE_NAME/$CODESPACE_NAME/g"  wp-config.php
 wp core install --url=https://$(CODESPACE_NAME) --title=WordPress --admin_user=admin --admin_password=admin --admin_email=mail@example.com
+
+echo "Codespace Name
 
 # Selected plugins
 wp plugin delete akismet
