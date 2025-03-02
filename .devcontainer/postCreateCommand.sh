@@ -27,7 +27,8 @@ sudo chown www-data:www-data /var/run/apache2
 
 # Enable modules and restart Apache
 echo "Enabling Apache modules..."
-sudo a2enmod rewrite
+sudo a2enmod rewrite headers
+sudo a2enmod ssl
 
 # Start Apache
 echo "Starting Apache..."
@@ -50,8 +51,12 @@ if (isset(\$_SERVER['HTTP_X_FORWARDED_PROTO']) && \$_SERVER['HTTP_X_FORWARDED_PR
 }
 PHP
 
-# Install WordPress without hardcoding the URL
-wp core install --url="$(curl -s http://localhost/wp-admin/ | grep -o 'https://[^/"]*')" --title=WordPress --admin_user=admin --admin_password=admin --admin_email=mail@example.com
+# Install WordPress with explicit port 443
+wp core install --url="https://$CODESPACE_NAME-443.app.github.dev" --title=WordPress --admin_user=admin --admin_password=admin --admin_email=mail@example.com
+
+# Update site URL to use port 443
+wp option update home "https://$CODESPACE_NAME-443.app.github.dev"
+wp option update siteurl "https://$CODESPACE_NAME-443.app.github.dev"
 
 # Selected plugins
 wp plugin delete akismet
