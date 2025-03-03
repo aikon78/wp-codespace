@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Launch WordPress Homepage",
+      "type": "shell",
+      "command": "bash -c '.devcontainer/launch-wordpress.sh home | xargs -I {} code --openExternal {}'",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Launch WordPress Admin",
+      "type": "shell",
+      "command": "bash -c '.devcontainer/launch-wordpress.sh admin | xargs -I {} code --openExternal {}'",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

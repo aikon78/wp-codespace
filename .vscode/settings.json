@@ -29,5 +29,20 @@
     "phpcbf.standard": "WordPress",
     "php.validate.run": "onType",
     "workbench.editor.enablePreview": false,
-    "extensions.ignoreRecommendations": true
+    "extensions.ignoreRecommendations": true,
+    "vscode-task-buttons.showCounter": true,
+    "vscode-task-buttons.tasks": [
+      {
+        "label": "$(globe) Launch WordPress Homepage",
+        "task": "Launch WordPress Homepage",
+        "tooltip": "Open the WordPress homepage in the browser",
+        "dependsOn": []
+      },
+      {
+        "label": "$(lock) Launch WordPress Admin",
+        "task": "Launch WordPress Admin",
+        "tooltip": "Open the WordPress admin login page in the browser",
+        "dependsOn": []
+      }
+    ]
   }

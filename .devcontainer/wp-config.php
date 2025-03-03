@@ -7,21 +7,20 @@ define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 $table_prefix = 'wp_';
 
-// Define keys and salts (replace with your secure values)
+// Define keys and salts (replace with secure values)
 define('AUTH_KEY',         'your-unique-phrase-here');
 define('SECURE_AUTH_KEY',  'your-unique-phrase-here');
 // ... other keys ...
 
-// Force correct URL regardless of request
-define('WP_HOME', 'https://probable-space-capybara-vwwj67rgr6wh7rx-8080.app.github.dev');
-define('WP_SITEURL', 'https://probable-space-capybara-vwwj67rgr6wh7rx-8080.app.github.dev');
+// Dynamically set URL from Codespace environment variables
+$codespace_url = 'https://' . getenv('CODESPACE_NAME') . '.' . getenv('GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN');
+$base_url = !empty(getenv('CODESPACE_NAME')) && !empty(getenv('GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN')) ? $codespace_url : 'http://localhost:8080';
 
-// Use Codespace URL from environment variables if available
-$codespace_url = 'https://' . getenv('CODESPACE_NAME') . '-8080.' . getenv('GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN');
-if (!empty($codespace_url)) {
-    define('WP_HOME', $codespace_url);
-    define('WP_SITEURL', $codespace_url);
-}
+// Set WordPress URLs and host overrides
+define('WP_HOME', $base_url);
+define('WP_SITEURL', $base_url);
+$_SERVER['HTTP_HOST'] = parse_url($base_url, PHP_URL_HOST);
+$_SERVER['SERVER_NAME'] = parse_url($base_url, PHP_URL_HOST);
 
 // Force HTTPS for Codespaces proxy
 if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
