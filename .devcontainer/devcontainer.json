@@ -9,22 +9,25 @@
     8080
   ],
   "postCreateCommand": "docker-compose -f .devcontainer/docker-compose.yml up -d && bash .devcontainer/setup-wordpress.sh",
+  "postStartCommand": "docker-compose -f .devcontainer/docker-compose.yml up -d && sudo service apache2 restart",
   "customizations": {
     "vscode": {
       "extensions": [
         "spencerwmiles.vscode-task-buttons"
       ],
       "settings": {
-        "vscode-task-buttons.showCounter": true,
-        "vscode-task-buttons.tasks": [
+        "VsCodeTaskButtons.showCounter": true,
+        "VsCodeTaskButtons.position": "statusbar",
+        "VsCodeTaskButtons.refreshOnStart": true,
+        "VsCodeTaskButtons.tasks": [
           {
-            "label": "$(globe) Launch WordPress Homepage",
+            "label": "$(globe) WordPress Home",
             "task": "Launch WordPress Homepage",
             "tooltip": "Open the WordPress homepage in the browser",
             "dependsOn": []
           },
           {
-            "label": "$(lock) Launch WordPress Admin",
+            "label": "$(lock) WordPress Admin",
             "task": "Launch WordPress Admin",
             "tooltip": "Open the WordPress admin login page in the browser",
             "dependsOn": []
