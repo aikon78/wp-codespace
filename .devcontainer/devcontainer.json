@@ -5,6 +5,8 @@
     "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
   "workspaceFolder": "/workspaces/wp-codespace",
-  "forwardPorts": [8080],
-  "postCreateCommand": "docker-compose up -d && bash .devcontainer/setup-wordpress.sh"
+  "forwardPorts": [
+    8080
+  ],
+  "postCreateCommand": "docker-compose -f .devcontainer/docker-compose.yml up -d && bash .devcontainer/setup-wordpress.sh"
 }
