@@ -24,6 +24,10 @@ if command -v gh &> /dev/null; then
     if [ -n "$CODESPACE_NAME" ] && [ "$CODESPACE_NAME" != "$(hostname)" ]; then
         gh codespace ports visibility 8080:public --codespace $CODESPACE_NAME >> $LOG_FILE 2>&1 || \
         echo "$(date): Failed to set port visibility" >> $LOG_FILE
+        
+        # Add a delay to ensure the port has time to become public
+        echo "$(date): Waiting for port to become public (2 seconds)..." >> $LOG_FILE
+        sleep 2
     else
         echo "$(date): Not in a detectable Codespace environment" >> $LOG_FILE
     fi

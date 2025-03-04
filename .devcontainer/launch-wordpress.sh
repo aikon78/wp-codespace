@@ -19,6 +19,10 @@ if [ -n "$CODESPACE_NAME" ] && [ "$CODESPACE_NAME" != "$(hostname)" ]; then
     echo "Making port 8080 public for secure access..."
     if command -v gh &> /dev/null; then
         gh codespace ports visibility 8080:public --codespace $CODESPACE_NAME || echo "⚠️ Failed to set port visibility - you may need to make port 8080 public manually"
+        
+        # Add a delay to ensure the port has time to become public
+        echo "Waiting for port to become public (2 seconds)..."
+        sleep 2
     else
         echo "⚠️ GitHub CLI not found - cannot set port visibility automatically"
         echo "Please make port 8080 public manually in the Ports tab"
