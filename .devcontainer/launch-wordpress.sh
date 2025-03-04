@@ -1,42 +1,46 @@
 #!/bin/bash
+set -e  # Exit on any error
 
 # Get Codespace environment variables
-CODESPACE_NAME=${CODESPACE_NAME}
+CODESPACE_NAME=${CODESPACE_NAME:-$(hostname)}
 DOMAIN=${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN:-app.github.dev}
 
-# Construct the base URL (without trailing slash)
-BASE_URL="https://$CODESPACE_NAME.$DOMAIN"
+# Debug information
+echo "Debug: CODESPACE_NAME=$CODESPACE_NAME"
+echo "Debug: DOMAIN=$DOMAIN"
 
-# Make port 8080 public
-echo "Making port 8080 public for secure access..."
-if command -v gh &> /dev/null; then
-    if [ -n "$CODESPACE_NAME" ]; then
+# Construct the base URL (without trailing slash)
+if [ -n "$CODESPACE_NAME" ] && [ "$CODESPACE_NAME" != "$(hostname)" ]; then
+    # We're in a Codespace
+    BASE_URL="https://$CODESPACE_NAME-8080.$DOMAIN"
+    echo "Debug: Using Codespace URL: $BASE_URL"
+    
+    # Make port 8080 public
+    echo "Making port 8080 public for secure access..."
+    if command -v gh &> /dev/null; then
         gh codespace ports visibility 8080:public --codespace $CODESPACE_NAME || echo "⚠️ Failed to set port visibility - you may need to make port 8080 public manually"
     else
-        echo "⚠️ CODESPACE_NAME not set - cannot set port visibility automatically"
+        echo "⚠️ GitHub CLI not found - cannot set port visibility automatically"
+        echo "Please make port 8080 public manually in the Ports tab"
     fi
 else
-    echo "⚠️ GitHub CLI not found - cannot set port visibility automatically"
+    # We're not in a Codespace or can't detect it properly
+    echo "⚠️ Not running in a detectable Codespace environment"
+    echo "Using localhost URL instead"
+    BASE_URL="http://localhost:8080"
 fi
 
-# Check if in Codespace environment
-if [ -n "$CODESPACE_NAME" ]; then
-    case "$1" in
-        "home")
-            echo "$BASE_URL"
-            ;;
-        "admin")
-            echo "$BASE_URL/wp-admin"
-            ;;
-        *)
-            echo "Usage: $0 {home|admin}"
-            echo "Specify 'home' for the homepage or 'admin' for the admin login page."
-            exit 1
-            ;;
-    esac
-else
-    echo "This script must be run in a GitHub Codespace. For local testing, visit:"
-    echo "Homepage: http://localhost:8080"
-    echo "Admin: http://localhost:8080/wp-admin"
-    exit 1
-fi
+# Process the command argument
+case "$1" in
+    "home")
+        echo "$BASE_URL"
+        ;;
+    "admin")
+        echo "$BASE_URL/wp-admin"
+        ;;
+    *)
+        echo "Usage: $0 {home|admin}"
+        echo "Specify 'home' for the homepage or 'admin' for the admin login page."
+        exit 1
+        ;;
+esac
