@@ -14,7 +14,7 @@
       "visibility": "private"
     }
   },
-  "postCreateCommand": "docker-compose -f .devcontainer/docker-compose.yml up -d && bash .devcontainer/setup-wordpress.sh",
+  "postCreateCommand": "docker-compose -f .devcontainer/docker-compose.yml up -d && bash .devcontainer/setup-wordpress.sh && bash .devcontainer/git-config.sh",
   "postStartCommand": "bash .devcontainer/startup.sh",
   "customizations": {
     "vscode": {
@@ -49,9 +49,23 @@
             "task": "WP Restart",
             "tooltip": "Restart WordPress services and ensure port is private",
             "dependsOn": []
+          },
+          {
+            "label": "$(repo-push) Save to Github",
+            "task": "Save to Github",
+            "tooltip": "Commit and push changes to GitHub",
+            "dependsOn": []
           }
         ]
       }
+    }
+  },
+  "tasks": {
+    "Save to Github": {
+      "label": "Save to Github",
+      "type": "shell",
+      "command": "if [[ -n $(git status --porcelain) ]]; then echo 'Uncommitted changes found'; read -p 'Enter submission comments: ' comments; git add .; git commit -m \"$comments\"; if git push; then echo 'Successfully pushed changes'; else echo 'Push failed. Attempting force push...'; read -p 'Force push may overwrite remote changes. Continue? (y/n): ' confirm; if [[ $confirm == 'y' ]]; then git push --force; echo 'Force push complete'; else echo 'Push cancelled'; fi; fi; else echo 'No changes to commit'; fi",
+      "problemMatcher": []
     }
   }
 }

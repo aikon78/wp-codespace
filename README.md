@@ -11,6 +11,7 @@ A ready-to-use WordPress development environment that runs in GitHub Codespaces.
 - **Persistent Storage**: Your changes persist between Codespace sessions
 - **Stable Operation**: Improved task button reliability with robust error handling
 - **Classroom Compatible**: Works seamlessly with GitHub Classroom for educational use
+- **Git Integration**: Automatic Git sync check and easy submission with "Save to Github" button
 
 ## 🔒 Security Considerations
 
@@ -34,6 +35,7 @@ The setup process will:
 - Set up Apache to serve your WordPress site
 - Configure port forwarding with private access by default
 - Install necessary tools and extensions
+- Configure Git settings for the environment
 
 ### 2. Access Your WordPress Site
 
@@ -43,6 +45,7 @@ Once the Codespace is ready, you can access your WordPress site using the status
 - **WP Admin**: Makes port 8080 public and opens the WordPress admin login page
 - **PW Reset**: Resets the admin password if you're having trouble logging in
 - **WP Restart**: Restarts the WordPress services and ensures port 8080 is private
+- **Save to Github**: Commit and push your changes to GitHub with custom comments
 
 ### 3. WordPress Admin Credentials
 
@@ -74,6 +77,25 @@ https://<your-codespace-name>-8080.app.github.dev/wp-admin
 - You can install plugins and themes through the WordPress admin interface
 - Changes to files are automatically reflected on your site
 
+### Git Workflow
+
+This environment includes enhanced Git functionality:
+
+1. **Automatic Git Sync Check**: When you start your Codespace, it automatically checks for updates from GitHub
+   - If updates are found, you'll be prompted to either replace your local code or keep your changes
+   - This ensures you're always working with the latest code from your repository
+
+2. **Save to Github Button**: Easily commit and push your changes
+   - Click the "Save to Github" button in the status bar
+   - Enter your submission comments when prompted
+   - Your changes will be committed and pushed to GitHub
+   - If a push fails, you'll have the option to force push (use with caution)
+
+3. **Git Configuration**: Git is automatically configured with:
+   - Default branch set to main
+   - Pull configured to merge (not rebase)
+   - User credentials set based on GitHub user information
+
 ### Troubleshooting
 
 If you encounter any issues:
@@ -101,6 +123,7 @@ This Codespace setup includes:
 - Docker for containerization
 - Task buttons for common operations
 - Automatic port visibility management for security
+- Git integration for code synchronization and submission
 
 ## Customization
 

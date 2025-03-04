@@ -29,4 +29,12 @@ else
     echo "⚠️ GitHub CLI not found - cannot set port visibility automatically"
 fi
 
+# Run Git sync check
+echo "🔄 Checking for updates from GitHub..."
+if [ -f ".devcontainer/git-sync.sh" ]; then
+    bash .devcontainer/git-sync.sh
+else
+    echo "⚠️ Git sync script not found"
+fi
+
 echo "✅ Startup complete! WordPress is ready. Use the WP Home or WP Admin buttons to access your site." 
