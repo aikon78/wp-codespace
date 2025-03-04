@@ -31,19 +31,36 @@ else
     echo "$(date): GitHub CLI not found" >> $LOG_FILE
 fi
 
-# Determine the URL based on the argument
+# Get the forwarding URL directly from GitHub CLI if possible
+if command -v gh &> /dev/null && [ -n "$CODESPACE_NAME" ] && [ "$CODESPACE_NAME" != "$(hostname)" ]; then
+    echo "$(date): Attempting to get forwarding URL from GitHub CLI..." >> $LOG_FILE
+    FORWARDING_INFO=$(gh codespace ports --codespace $CODESPACE_NAME 2>> $LOG_FILE)
+    echo "$(date): Forwarding info: $FORWARDING_INFO" >> $LOG_FILE
+    
+    # Extract the URL for port 8080
+    if echo "$FORWARDING_INFO" | grep -q "8080"; then
+        FORWARDING_URL=$(echo "$FORWARDING_INFO" | grep "8080" | awk '{print $3}')
+        echo "$(date): Found forwarding URL: $FORWARDING_URL" >> $LOG_FILE
+        BASE_URL=$FORWARDING_URL
+    else
+        echo "$(date): Could not find port 8080 in forwarding info, using fallback" >> $LOG_FILE
+        BASE_URL="https://$CODESPACE_NAME-8080.$DOMAIN"
+    fi
+else
+    # Fallback to constructed URL
+    if [ -n "$CODESPACE_NAME" ] && [ "$CODESPACE_NAME" != "$(hostname)" ]; then
+        BASE_URL="https://$CODESPACE_NAME-8080.$DOMAIN"
+    else
+        BASE_URL="http://localhost:8080"
+    fi
+    echo "$(date): Using fallback URL: $BASE_URL" >> $LOG_FILE
+fi
+
+# Determine the final URL based on the argument
 if [ "$1" = "home" ]; then
-    if [ -n "$CODESPACE_NAME" ] && [ "$CODESPACE_NAME" != "$(hostname)" ]; then
-        URL="https://$CODESPACE_NAME-8080.$DOMAIN"
-    else
-        URL="http://localhost:8080"
-    fi
+    URL="$BASE_URL"
 elif [ "$1" = "admin" ]; then
-    if [ -n "$CODESPACE_NAME" ] && [ "$CODESPACE_NAME" != "$(hostname)" ]; then
-        URL="https://$CODESPACE_NAME-8080.$DOMAIN/wp-admin"
-    else
-        URL="http://localhost:8080/wp-admin"
-    fi
+    URL="$BASE_URL/wp-admin"
 else
     echo "$(date): Invalid argument: $1" >> $LOG_FILE
     echo "Usage: $0 {home|admin}" >> $LOG_FILE
