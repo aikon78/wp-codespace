@@ -7,6 +7,18 @@ DOMAIN=${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN:-app.github.dev}
 # Construct the base URL (without trailing slash)
 BASE_URL="https://$CODESPACE_NAME.$DOMAIN"
 
+# Make port 8080 public
+echo "Making port 8080 public for secure access..."
+if command -v gh &> /dev/null; then
+    if [ -n "$CODESPACE_NAME" ]; then
+        gh codespace ports visibility 8080:public --codespace $CODESPACE_NAME || echo "⚠️ Failed to set port visibility - you may need to make port 8080 public manually"
+    else
+        echo "⚠️ CODESPACE_NAME not set - cannot set port visibility automatically"
+    fi
+else
+    echo "⚠️ GitHub CLI not found - cannot set port visibility automatically"
+fi
+
 # Check if in Codespace environment
 if [ -n "$CODESPACE_NAME" ]; then
     case "$1" in

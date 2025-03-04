@@ -15,13 +15,13 @@ else
     echo "ℹ️ Apache not found in this container - using Docker for WordPress"
 fi
 
-# Set port visibility to public (non-interactive)
-echo "🔓 Setting port 8080 to public..."
+# Ensure port is private by default for security
+echo "🔒 Setting port 8080 to private for security..."
 if command -v gh &> /dev/null; then
     # Get current codespace name from environment
     if [ -n "$CODESPACE_NAME" ]; then
         echo "Using codespace: $CODESPACE_NAME"
-        gh codespace ports visibility 8080:public --codespace $CODESPACE_NAME || echo "⚠️ Failed to set port visibility - please set manually"
+        gh codespace ports visibility 8080:private --codespace $CODESPACE_NAME || echo "⚠️ Failed to set port visibility - please check manually"
     else
         echo "⚠️ CODESPACE_NAME not set - cannot set port visibility automatically"
     fi
@@ -29,4 +29,4 @@ else
     echo "⚠️ GitHub CLI not found - cannot set port visibility automatically"
 fi
 
-echo "✅ Startup complete! WordPress is ready." 
+echo "✅ Startup complete! WordPress is ready. Use the WP Home or WP Admin buttons to access your site." 

@@ -11,7 +11,7 @@
   ],
   "portsAttributes": {
     "8080": {
-      "visibility": "public"
+      "visibility": "private"
     }
   },
   "postCreateCommand": "docker-compose -f .devcontainer/docker-compose.yml up -d && bash .devcontainer/setup-wordpress.sh",
@@ -27,27 +27,27 @@
         "VsCodeTaskButtons.refreshOnStart": true,
         "VsCodeTaskButtons.tasks": [
           {
-            "label": "$(globe) WP Home",
+            "label": "$(globe) WordPress Home",
             "task": "Launch WordPress Homepage",
             "tooltip": "Open the WordPress homepage in the browser",
             "dependsOn": []
           },
           {
-            "label": "$(lock) WP Admin",
+            "label": "$(lock) WordPress Admin",
             "task": "Launch WordPress Admin",
             "tooltip": "Open the WordPress admin login page in the browser",
             "dependsOn": []
           },
           {
-            "label": "$(key) PW Reset",
+            "label": "$(key) Reset Admin Password",
             "task": "Reset WordPress Admin Password",
             "tooltip": "Reset the WordPress admin password to password123",
             "dependsOn": []
           },
           {
-            "label": "$(refresh) WP Restart",
+            "label": "$(refresh) Restart Services",
             "task": "Restart WordPress Services",
-            "tooltip": "Restart WordPress services and set port to public",
+            "tooltip": "Restart WordPress services and ensure port is private",
             "dependsOn": []
           }
         ]

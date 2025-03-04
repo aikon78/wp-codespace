@@ -1,81 +1,108 @@
-# WordPress Codespace Dev Environment
+# WordPress Codespace Development Environment
 
-This is a starter kit for a development environment for WordPress in a GitGub [Codepsace](https://github.com/features/codespaces).
-Start developing for WordPress right after a single click.
+A ready-to-use WordPress development environment that runs in GitHub Codespaces. Start developing for WordPress with just a single click - no local setup required!
 
-## Installation
-Create your own codespace by clicking this button. Please allow 5 minutes for auto-configuration at first setup. 
+## Features
+
+- **Instant WordPress Setup**: WordPress is automatically installed and configured
+- **Docker-based**: Uses Docker to isolate the WordPress and database environments
+- **Task Buttons**: Convenient buttons in the status bar for common tasks
+- **Enhanced Security**: Port is private by default and only made public when accessing the site
+- **Persistent Storage**: Your changes persist between Codespace sessions
+
+## 🔒 Security Considerations
+
+Avoid storing sensitive information in this environment as it's intended for development purposes only.
+
+- Port 8080 is **private by default** - HOWEVER, the port is made public temporarily when you click the WP Home or WP Admin buttons so that you may view the web pages in your web browser. Anyone that has the URL to your codespace will be able to access it any time you are able to access it with your web browser. You cut off public access any time by going to the `Ports` tab and changing visibility from `Public` to `Private`.
+- For additional security, consider changing the default admin password after setup
+
+
+
+## Getting Started
+
+### 1. Create a Codespace
+
+Click the button below to create your own Codespace:
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=586814971&devcontainer_path=.devcontainer%2Fdevcontainer.json&location=WestEurope)
 
-You are done. The installation is completed.
+The setup process will:
+- Install WordPress and configure the database
+- Set up Apache to serve your WordPress site
+- Configure port forwarding with private access by default
+- Install necessary tools and extensions
 
-## Usage
-Try the example plugin in _plugins/wp-codespace_, make some changes and appreciate the advantages of a pre-configured codespace.
+### 2. Access Your WordPress Site
 
-### Linting
-Edit the file _wordpress/wp-content/plugins/wp-codespace/wp-codespace.php_:
-- Delete a whitespace between parentheses and curly brackets and see the code linting in action. 
-- Use a right click to format the file according to [WordPress Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/).
+Once the Codespace is ready, you can access your WordPress site using the status bar buttons:
 
-### WordPress autocompletion
-Edit the file _wordpress/wp-content/plugins/wp-codespace/wp-codespace.php_:
-- type somewhere _"add_" and see the autocompletion suggestions especially for WordPress.
+- **WP Home**: Makes port 8080 public and opens the WordPress homepage
+- **WP Admin**: Makes port 8080 public and opens the WordPress admin login page
+- **PW Reset**: Resets the admin password if you're having trouble logging in
+- **WP Restart**: Restarts the WordPress services and ensures port 8080 is private
 
-### WordPress inline documentation
-Open the file _wordpress/wp-content/plugins/wp-codespace/wp-codespace.php_:
-- hover over _add_action_ and see the documentation for that WordPress method
+### 3. WordPress Admin Credentials
 
-### WP CLI
-Open the terminal (make sure, you are in the subfolder _wordpress_) and try the [WP CLI](https://wp-cli.org/).
-- `wp plugin list`
+Use these credentials to log in to the WordPress admin dashboard:
 
-### Playwright Tests
-Open the terminal and switch to the directory _wordpress/wp-content/plugins/wp-codespace_.
-- run `npm test` for an example [playwright test](https://playwright.dev/).
+- **Username**: admin
+- **Password**: password123
+- **Email**: admin@example.com
 
-See the test specification in the subfolder _tests_.
+## Development Workflow
 
-### SASS/CSS Compiling
-Open the terminal and switch to the directory _wordpress/wp-content/plugins/wp-codespace_.
-- change the color in the file _build/sass/styles.scss_
-- run `npm run compile:css` to compile _styles.css_
+### Accessing Your Site
 
-### Demo content
-This repo fills WordPress with demo content from the [WordPress Theme Unit Test](https://codex.wordpress.org/Theme_Unit_Test). In your fork, you can place an *.xml-file and import this data via the WP CLI. See _.devcontainer/postCreateCommand.sh_ and search for _"Demo content for WordPress"_ for more details.
+Your WordPress site is accessible at:
+```
+https://<your-codespace-name>-8080.app.github.dev
+```
 
-### Debugging
-[Xdebug](https://xdebug.org/) is installed and [configured for VS Code](https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug). See _.vscode/launch.json_ for details.
-- set an arbitrary breakpoint in _wordpress/wp-content/plugins/wp-codespace/wp-codespace.php_
-- start debugging with _Listen for Xdebug in WordPress_. The footer-line in VS Code will turn orange
-- head your browser to the admin-panel 
-- see debugging information in VS Code
+The WordPress admin area is at:
+```
+https://<your-codespace-name>-8080.app.github.dev/wp-admin
+```
 
-## Behind the scenes
-This setup will install and configure the following things automatically:
-- install WordPress with credentials admin/admin
-- install and activate selected plugins
-- populate demo data from the [WordPress Theme Unit Test](https://codex.wordpress.org/Theme_Unit_Test)
-- install [WP CLI](https://wp-cli.org/)
-- install node (npm) and php (composer) dependencies
-- add [playwright test](https://playwright.dev/) environment
-- install and [configure Xdebug]((https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug))
-- configure VS Code:
-  - WordPress Coding Standards
-  - autocompletion for WordPress functions
-  - searchable WordPress-Docs
-  - Xdebug launch.json
-  - dark theme, autosave and much more. See _.vscode/settings.json_
- 
- For more details, take a look into the folders _.devcontainer_ and _.vscode_.
+**Important**: You must use the WP Home or WP Admin buttons to access these URLs, as they make the port public before opening the site.
 
-## About Codepsaces
-GitHub Codespaces are your dev environment in the cloud. Start coding instantly on your WordPress theme or plugin. A codespace is an IDE in the browser with pre-configured XDebug, WordPress Coding Standards and a pre-installed WordPress with your personal plugin or theme, that you are developing.
+### Making Changes
 
-Set up your personal codespace on this repo (or on your private fork) with just one click. Codespace installs WordPress automatically, pre-configures XDebug, enables playwright tests, installs the WordPress Coding Standards and configures the VS Code extension for PHP_CodeSniffer and many other WordPress extensions. Start coding your theme or plugin without any further ado.
+- WordPress files are located in the `/workspaces/wp-codespace/wordpress` directory
+- You can install plugins and themes through the WordPress admin interface
+- Changes to files are automatically reflected on your site
 
-A codespace is a convenient way to contribute to an Open Source project, as you find all prerequisites preconfigured. You do not have to install any software, a codespace runs in the browser, as well as in your local VS Code or PhpStorm.
+### Troubleshooting
 
-Just write, test and refactor your WordPress code. No need for devOps.
+If you encounter any issues:
 
-Give it a try and [create your personal codespace](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=586814971&devcontainer_path=.devcontainer%2Fdevcontainer.json&location=WestEurope) right now.
+1. Use the **WP Restart** button in the status bar to restart WordPress
+2. If you can't log in, use the **PW Reset** button
+3. If you can't access your site, make sure you're using the WP Home or WP Admin buttons which handle port visibility
+
+## Behind the Scenes
+
+This Codespace setup includes:
+
+- WordPress with a MariaDB database
+- Apache web server
+- WP-CLI for command-line WordPress management
+- Docker for containerization
+- Task buttons for common operations
+- Automatic port visibility management for security
+
+## Customization
+
+You can customize this environment by:
+
+- Editing `.devcontainer/devcontainer.json` to change Codespace settings
+- Modifying `.devcontainer/docker-compose.yml` to adjust the Docker configuration
+- Adding your own scripts to the `.devcontainer` directory
+
+## Stopping and Restarting
+
+When you stop and restart your Codespace, the WordPress services will automatically restart thanks to the `postStartCommand` in the devcontainer configuration. The port will remain private until you use the WP Home or WP Admin buttons.
+
+---
+
+Happy WordPress development!
