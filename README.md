@@ -9,13 +9,13 @@ A ready-to-use WordPress development environment that runs in GitHub Codespaces.
 - **Task Buttons**: Convenient buttons in the status bar for common tasks
 - **Enhanced Security**: Port is private by default and only made public when accessing the site
 - **Persistent Storage**: Your changes persist between Codespace sessions
-- **Stable Operation**: Improved task button reliability with robust error handling
+
 
 ## 🔒 Security Considerations
 
 Avoid storing sensitive information in this environment as it's intended for development purposes only.
 
-- Port 8080 is **private by default** - HOWEVER, the port is made public temporarily when you click the WP Home or WP Admin buttons so that you may view the web pages in your web browser. Anyone that has the URL to your codespace will be able to access it any time you are able to access it with your web browser. You cut off public access any time by going to the `Ports` tab and changing visibility from `Public` to `Private`.
+- Port 8080 is **private by default** - HOWEVER, the port is made public temporarily when you click the WP Home or WP Admin buttons so that you may view the web pages in your web browser. Anyone that has the URL to your codespace will be able to access it any time you are able to access it with your web browser. You may cut off public access any time by by restarting the WP server using the `WP Restart` button in the status bar
 - For additional security, consider changing the default admin password after setup
 
 
