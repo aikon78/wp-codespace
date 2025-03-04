@@ -11,8 +11,8 @@ echo "Debug: DOMAIN=$DOMAIN"
 
 # Construct the base URL (without trailing slash)
 if [ -n "$CODESPACE_NAME" ] && [ "$CODESPACE_NAME" != "$(hostname)" ]; then
-    # We're in a Codespace
-    BASE_URL="https://$CODESPACE_NAME-8080.$DOMAIN"
+    # We're in a Codespace - use URL without port in hostname
+    BASE_URL="https://$CODESPACE_NAME.$DOMAIN"
     echo "Debug: Using Codespace URL: $BASE_URL"
     
     # Make port 8080 public
