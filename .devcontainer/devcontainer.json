@@ -36,6 +36,12 @@
             "task": "Launch WordPress Admin",
             "tooltip": "Open the WordPress admin login page in the browser",
             "dependsOn": []
+          },
+          {
+            "label": "$(key) Reset Admin Password",
+            "task": "Reset WordPress Admin Password",
+            "tooltip": "Reset the WordPress admin password to password123",
+            "dependsOn": []
           }
         ]
       }

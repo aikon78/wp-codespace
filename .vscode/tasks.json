@@ -24,6 +24,18 @@
         "clear": true
       },
       "problemMatcher": []
+    },
+    {
+      "label": "Reset WordPress Admin Password",
+      "type": "shell",
+      "command": "bash -c '.devcontainer/reset-admin-password.sh'",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": []
     }
   ]
 }
