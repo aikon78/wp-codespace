@@ -27,8 +27,8 @@ until docker-compose -f .devcontainer/docker-compose.yml exec -T wordpress nc -z
 done
 echo "Database ready!"
 
-# Define the correct Codespace URL
-CODESPACE_URL="https://${CODESPACE_NAME}-8080.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
+# Define the correct Codespace URL without port in hostname
+CODESPACE_URL="https://${CODESPACE_NAME}.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
 
 # Reset and install WordPress using root for database setup
 echo "Resetting and installing WordPress..."

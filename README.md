@@ -9,13 +9,14 @@ A ready-to-use WordPress development environment that runs in GitHub Codespaces.
 - **Task Buttons**: Convenient buttons in the status bar for common tasks
 - **Enhanced Security**: Port is private by default and only made public when accessing the site
 - **Persistent Storage**: Your changes persist between Codespace sessions
-
+- **Stable Operation**: Improved task button reliability with robust error handling
+- **Classroom Compatible**: Works seamlessly with GitHub Classroom for educational use
 
 ## 🔒 Security Considerations
 
 Avoid storing sensitive information in this environment as it's intended for development purposes only.
 
-- Port 8080 is **private by default** - HOWEVER, the port is made public temporarily when you click the WP Home or WP Admin buttons so that you may view the web pages in your web browser. Anyone that has the URL to your codespace will be able to access it any time you are able to access it with your web browser. You may cut off public access any time by by restarting the WP server using the `WP Restart` button in the status bar
+- Port 8080 is **private by default** - HOWEVER, the port is made public temporarily when you click the WP Home or WP Admin buttons so that you may view the web pages in your web browser. Anyone that has the URL to your codespace will be able to access it any time you are able to access it with your web browser. You cut off public access any time by going to the `Ports` tab and changing visibility from `Public` to `Private`.
 - For additional security, consider changing the default admin password after setup
 
 
@@ -69,7 +70,7 @@ https://<your-codespace-name>-8080.app.github.dev/wp-admin
 
 ### Making Changes
 
-- WordPress files are located in the `/workspaces/wp-codespace/wordpress` directory
+- WordPress files are located in the `/workspaces/<repository-name>/wordpress` directory
 - You can install plugins and themes through the WordPress admin interface
 - Changes to files are automatically reflected on your site
 
@@ -81,6 +82,14 @@ If you encounter any issues:
 2. If you can't log in, use the **PW Reset** button
 3. If you can't access your site, make sure you're using the WP Home or WP Admin buttons which handle port visibility
 4. Check the log file at `/tmp/wp-task-log.txt` for diagnostic information about task button operations
+
+## GitHub Classroom Compatibility
+
+This environment is designed to work seamlessly with GitHub Classroom:
+
+1. **Flexible Workspace Path**: The environment automatically adapts to the repository name assigned by GitHub Classroom
+2. **No Hardcoded Paths**: All scripts use relative paths or environment variables to ensure compatibility
+3. **Consistent Experience**: Students will have the same development experience regardless of repository name
 
 ## Behind the Scenes
 
