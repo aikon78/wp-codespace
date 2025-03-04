@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Launch WordPress Homepage",
+      "label": "WP Homepage",
       "type": "shell",
       "command": "bash -c '.devcontainer/launch-wordpress.sh home | xargs -I {} code --openExternal {}'",
       "presentation": {
@@ -14,7 +14,7 @@
       "problemMatcher": []
     },
     {
-      "label": "Launch WordPress Admin",
+      "label": "WP Admin",
       "type": "shell",
       "command": "bash -c '.devcontainer/launch-wordpress.sh admin | xargs -I {} code --openExternal {}'",
       "presentation": {
@@ -26,7 +26,7 @@
       "problemMatcher": []
     },
     {
-      "label": "Reset WordPress Admin Password",
+      "label": "PW Reset",
       "type": "shell",
       "command": "bash -c '.devcontainer/reset-admin-password.sh'",
       "presentation": {
@@ -38,7 +38,7 @@
       "problemMatcher": []
     },
     {
-      "label": "Restart WordPress Services",
+      "label": "WP Restart",
       "type": "shell",
       "command": "bash -c '.devcontainer/startup.sh'",
       "presentation": {

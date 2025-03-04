@@ -27,26 +27,26 @@
         "VsCodeTaskButtons.refreshOnStart": true,
         "VsCodeTaskButtons.tasks": [
           {
-            "label": "$(globe) WordPress Home",
-            "task": "Launch WordPress Homepage",
+            "label": "$(globe) WP Home",
+            "task": "WP Homepage",
             "tooltip": "Open the WordPress homepage in the browser",
             "dependsOn": []
           },
           {
-            "label": "$(lock) WordPress Admin",
-            "task": "Launch WordPress Admin",
+            "label": "$(lock) WP Admin",
+            "task": "WP Admin",
             "tooltip": "Open the WordPress admin login page in the browser",
             "dependsOn": []
           },
           {
-            "label": "$(key) Reset Admin Password",
-            "task": "Reset WordPress Admin Password",
+            "label": "$(key) PW Reset",
+            "task": "PW Reset",
             "tooltip": "Reset the WordPress admin password to password123",
             "dependsOn": []
           },
           {
-            "label": "$(refresh) Restart Services",
-            "task": "Restart WordPress Services",
+            "label": "$(refresh) WP Restart",
+            "task": "WP Restart",
             "tooltip": "Restart WordPress services and ensure port is private",
             "dependsOn": []
           }
