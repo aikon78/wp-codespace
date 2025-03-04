@@ -15,7 +15,7 @@
     }
   },
   "postCreateCommand": "docker-compose -f .devcontainer/docker-compose.yml up -d && bash .devcontainer/setup-wordpress.sh",
-  "postStartCommand": "docker-compose -f .devcontainer/docker-compose.yml up -d && sudo service apache2 restart && echo 'Setting port 8080 to public...' && (gh codespace ports visibility 8080:public || echo 'Failed to set port visibility - please set manually')",
+  "postStartCommand": "bash .devcontainer/startup.sh",
   "customizations": {
     "vscode": {
       "extensions": [
