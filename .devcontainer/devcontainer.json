@@ -59,13 +59,5 @@
         ]
       }
     }
-  },
-  "tasks": {
-    "Save to Github": {
-      "label": "Save to Github",
-      "type": "shell",
-      "command": "if [[ -n $(git status --porcelain) ]]; then echo 'Uncommitted changes found'; read -p 'Enter submission comments: ' comments; git add .; git commit -m \"$comments\"; if git push; then echo 'Successfully pushed changes'; else echo 'Push failed. Attempting force push...'; read -p 'Force push may overwrite remote changes. Continue? (y/n): ' confirm; if [[ $confirm == 'y' ]]; then git push --force; echo 'Force push complete'; else echo 'Push cancelled'; fi; fi; else echo 'No changes to commit'; fi",
-      "problemMatcher": []
-    }
   }
 }
