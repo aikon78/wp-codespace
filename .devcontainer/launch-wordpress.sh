@@ -4,8 +4,8 @@
 CODESPACE_NAME=${CODESPACE_NAME}
 DOMAIN=${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN:-app.github.dev}
 
-# Construct the base URL
-BASE_URL="https://$CODESPACE_NAME.$DOMAIN/"
+# Construct the base URL (without trailing slash)
+BASE_URL="https://$CODESPACE_NAME.$DOMAIN"
 
 # Check if in Codespace environment
 if [ -n "$CODESPACE_NAME" ]; then
@@ -14,7 +14,7 @@ if [ -n "$CODESPACE_NAME" ]; then
             echo "$BASE_URL"
             ;;
         "admin")
-            echo "$BASE_URL/wp-admin/"
+            echo "$BASE_URL/wp-admin"
             ;;
         *)
             echo "Usage: $0 {home|admin}"
@@ -24,7 +24,7 @@ if [ -n "$CODESPACE_NAME" ]; then
     esac
 else
     echo "This script must be run in a GitHub Codespace. For local testing, visit:"
-    echo "Homepage: http://localhost:8080/"
-    echo "Admin: http://localhost:8080/wp-admin/"
+    echo "Homepage: http://localhost:8080"
+    echo "Admin: http://localhost:8080/wp-admin"
     exit 1
 fi
