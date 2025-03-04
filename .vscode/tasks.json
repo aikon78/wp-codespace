@@ -4,9 +4,9 @@
     {
       "label": "WP Homepage",
       "type": "shell",
-      "command": "bash -c 'URL=$(.devcontainer/launch-wordpress.sh home) && echo \"Opening: $URL\" && code --openExternal \"$URL\"'",
+      "command": ".devcontainer/open-url.sh home > /tmp/wp-url.txt && cat /tmp/wp-url.txt | xargs code --openExternal",
       "presentation": {
-        "reveal": "always",
+        "reveal": "never",
         "panel": "dedicated",
         "showReuseMessage": false,
         "clear": true
@@ -16,9 +16,9 @@
     {
       "label": "WP Admin",
       "type": "shell",
-      "command": "bash -c 'URL=$(.devcontainer/launch-wordpress.sh admin) && echo \"Opening: $URL\" && code --openExternal \"$URL\"'",
+      "command": ".devcontainer/open-url.sh admin > /tmp/wp-url.txt && cat /tmp/wp-url.txt | xargs code --openExternal",
       "presentation": {
-        "reveal": "always",
+        "reveal": "never",
         "panel": "dedicated",
         "showReuseMessage": false,
         "clear": true

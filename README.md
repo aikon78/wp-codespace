@@ -9,6 +9,7 @@ A ready-to-use WordPress development environment that runs in GitHub Codespaces.
 - **Task Buttons**: Convenient buttons in the status bar for common tasks
 - **Enhanced Security**: Port is private by default and only made public when accessing the site
 - **Persistent Storage**: Your changes persist between Codespace sessions
+- **Stable Operation**: Improved task button reliability with robust error handling
 
 ## 🔒 Security Considerations
 
@@ -79,6 +80,7 @@ If you encounter any issues:
 1. Use the **WP Restart** button in the status bar to restart WordPress
 2. If you can't log in, use the **PW Reset** button
 3. If you can't access your site, make sure you're using the WP Home or WP Admin buttons which handle port visibility
+4. Check the log file at `/tmp/wp-task-log.txt` for diagnostic information about task button operations
 
 ## Behind the Scenes
 
