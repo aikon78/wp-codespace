@@ -43,6 +43,12 @@
             "task": "Reset WordPress Admin Password",
             "tooltip": "Reset the WordPress admin password to password123",
             "dependsOn": []
+          },
+          {
+            "label": "$(refresh) Restart Services",
+            "task": "Restart WordPress Services",
+            "tooltip": "Restart WordPress services and set port to public",
+            "dependsOn": []
           }
         ]
       }

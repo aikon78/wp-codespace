@@ -36,6 +36,18 @@
         "clear": true
       },
       "problemMatcher": []
+    },
+    {
+      "label": "Restart WordPress Services",
+      "type": "shell",
+      "command": "bash -c '.devcontainer/startup.sh'",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": []
     }
   ]
 }
