@@ -17,6 +17,8 @@ services:
       - "8080:80"
     volumes:
       - ./wp-config.php:/var/www/html/wp-config.php
+      - wp-content:/var/www/html/wp-content
+
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: wordpress
